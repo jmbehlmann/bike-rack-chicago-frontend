@@ -1,12 +1,12 @@
 import { RacksIndex } from "./components/RacksIndex.jsx"
-import { Map } from "./components/Map.jsx"
+import { MapIndex } from "./components/MapIndex.jsx"
 
 export function Content() {
   return (
     <main>
       <h1>Bike Rack Chicago</h1>
       <RacksIndex/>
-      <Map/>
+      <MapIndex/>
     </main>
   )
 }
