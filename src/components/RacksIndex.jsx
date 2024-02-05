@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-export function RackIndex() {
+export function RacksIndex() {
   const [racks, setRacks] = useState([])
   const [searchLocation, setSearchLocation] = useState("")
 
@@ -24,7 +24,7 @@ export function RackIndex() {
       <h3>the 5 bike racks closest to {searchLocation}</h3>
       {racks.map((rack) => (
         <div key={rack.id}>
-          <h4>Name/Neighborhood: {rack.name}</h4>
+          <h4>location: {rack.name}</h4>
           <p>description: {rack.description}</p>
           <p>quantity: {rack.quantity}</p>
           <p>style: {rack.style}</p>
