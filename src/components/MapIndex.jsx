@@ -5,14 +5,12 @@ import {
   Map,
   AdvancedMarker,
   Pin,
-  InfoWindow,
+  InfoWindow
 } from "@vis.gl/react-google-maps";
-import { RacksIndex } from "./RacksIndex";
 
 export  function MapIndex() {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [zoom, setZoom] = useState(12);
-  const [open, setOpen] = useState(false);
   const [racks, setRacks] = useState([]);
   const [selectedRack, setSelectedRack] = useState(null);
   const [searchLocation, setSearchLocation] = useState("");
