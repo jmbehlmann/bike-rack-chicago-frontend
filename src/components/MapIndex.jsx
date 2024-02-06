@@ -79,7 +79,10 @@ export  function MapIndex() {
                     }}
                     onCloseClick={() => setSelectedRack(null)}
                   >
+                    <h3>{rack.name}</h3>
                     <p>{rack.description}</p>
+                    <p># racks: {rack.quantity}</p>
+                    <p>coordinates: {rack.latitude}, {rack.longitude}</p>
                   </InfoWindow>
                 )}
 

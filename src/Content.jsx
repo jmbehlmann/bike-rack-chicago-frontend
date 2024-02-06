@@ -5,8 +5,8 @@ export function Content() {
   return (
     <main>
       <h3>Bike Rack Chicago</h3>
-      {/* <RacksIndex/> */}
       <MapIndex/>
+      {/* <RacksIndex/> */}
     </main>
   )
 }
