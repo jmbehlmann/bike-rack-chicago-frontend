@@ -14,7 +14,8 @@ export  function MapIndex() {
   const [zoom, setZoom] = useState(12);
   const [open, setOpen] = useState(false);
   const [racks, setRacks] = useState([]);
-  const [searchLocation, setSearchLocation] = useState("")
+  const [selectedRack, setSelectedRack] = useState(null);
+  const [searchLocation, setSearchLocation] = useState("");
 
 
   const getRacks = async () => {
@@ -26,6 +27,10 @@ export  function MapIndex() {
     } catch (error) {
       console.error("Error fetching racks:", error);
     }
+  };
+
+  const handleMarkerClick = (rack) => {
+    setSelectedRack(rack);
   };
 
   useEffect(() => {
@@ -46,7 +51,7 @@ export  function MapIndex() {
       <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p>
       <button onClick={getRacks}>Get Racks</button>
       <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-        <div style={{ height: "100vh", width: "100%" }}>
+        <div style={{ height: "80vh", width: "100%" }}>
           <Map zoom={zoom} center={position} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
             {racks.map((rack) => (
               <div key={rack.id}>
@@ -55,7 +60,7 @@ export  function MapIndex() {
                     lat: parseFloat(rack.latitude),
                     lng: parseFloat(rack.longitude)
                     }}
-                  onClick={() => setOpen(true)}>
+                  onClick={() => handleMarkerClick(rack)}>
                   <Pin
                     background={"red"}
                     borderColor={"black"}
@@ -65,15 +70,21 @@ export  function MapIndex() {
                     // glyphColor={"#FF0000"}
                   />
                 </AdvancedMarker>
+
+                {selectedRack && selectedRack.id === rack.id && (
+                  <InfoWindow
+                    position={{
+                      lat: parseFloat(rack.latitude),
+                      lng: parseFloat(rack.longitude),
+                    }}
+                    onCloseClick={() => setSelectedRack(null)}
+                  >
+                    <p>{rack.description}</p>
+                  </InfoWindow>
+                )}
+
               </div>
-
             ))}
-              {/* {open && (
-                <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-                  <p>I'm in Hamburg</p>
-                </InfoWindow>
-              )} */}
-
           </Map>
         </div>
       </APIProvider>
