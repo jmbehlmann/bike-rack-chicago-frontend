@@ -47,7 +47,9 @@ export  function MapIndex() {
   return (
     <div>
       <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p>
+
       <button onClick={getRacks}>Get Racks</button>
+
       <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
         <div style={{ height: "80vh", width: "100%" }}>
           <Map zoom={zoom} center={position} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
