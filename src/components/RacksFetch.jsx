@@ -14,6 +14,8 @@ export function RacksFetch({ searchLocation, onRacksFetch }) {
     }
   };
 
+
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
@@ -30,7 +32,7 @@ export function RacksFetch({ searchLocation, onRacksFetch }) {
 
   return (
     <div>
-      <h2>Racks Fetch</h2>
+      {/* <h2>Racks Fetch</h2> */}
       <button onClick={getRacks}>Get Racks</button>
     </div>
   )

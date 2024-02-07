@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 
-export function SearchBox({isLoaded, onSearchLocationChange}) {
+export function SearchBox({isLoaded, onSearchLocationChange, onRacksFetch}) {
   const [autocomplete, setAutocomplete] = useState(null);
 
   const bounds = {
@@ -19,7 +19,7 @@ const options = {
     setAutocomplete(auto);
   };
 
-  const onPlaceChanged = () => {
+  const onPlaceChanged =  () => {
     if (autocomplete) {
       const place = autocomplete.getPlace();
       const location = place.formatted_address || place.name;
@@ -29,7 +29,7 @@ const options = {
 
   return (
     <div>
-      <p>Searchbox</p>
+      {/* <p>Searchbox</p> */}
       {isLoaded && (
 
         <Autocomplete
