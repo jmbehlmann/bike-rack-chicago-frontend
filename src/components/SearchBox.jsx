@@ -39,7 +39,7 @@ const options = {
           options={options}
           >
           <input
-            className='search-box'
+            className='form-control p-21'
             type="text"
             placeholder="Enter a location"
           />

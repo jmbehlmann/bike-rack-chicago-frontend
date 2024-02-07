@@ -33,7 +33,7 @@ export function RacksFetch({ searchLocation, onRacksFetch }) {
   return (
     <div>
       {/* <h2>Racks Fetch</h2> */}
-      <button onClick={getRacks}>Get Racks</button>
+      <button type="button" class="btn btn-primary w-100"  onClick={getRacks}>Get Racks</button>
     </div>
   )
 }
