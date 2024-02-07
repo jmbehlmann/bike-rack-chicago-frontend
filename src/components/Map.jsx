@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
 
 
-export function Map({isLoaded, searchLocation}) {
+export function Map({isLoaded, searchLocation, racks}) {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [zoom, setZoom] = useState(12);
-  const [racks, setRacks] = useState([]);
+  // const [racks, setRacks] = useState([]);
   const [selectedRack, setSelectedRack] = useState(null);
   // const [searchLocation, setSearchLocation] = useState('');
   // const [autocomplete, setAutocomplete] = useState(null);
@@ -24,16 +24,16 @@ export function Map({isLoaded, searchLocation}) {
   // };
 
 
-  const getRacks = async () => {
-    console.log('getRacks');
-    try {
-      const response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
-      console.log(response.data);
-      setRacks(response.data);
-    } catch (error) {
-      console.error('Error fetching racks:', error);
-    }
-  };
+  // const getRacks = async () => {
+  //   console.log('getRacks');
+  //   try {
+  //     const response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+  //     console.log(response.data);
+  //     setRacks(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching racks:', error);
+  //   }
+  // };
 
   const handleMarkerClick = (rack) => {
     setSelectedRack(rack);
@@ -69,14 +69,14 @@ export function Map({isLoaded, searchLocation}) {
             />
           </Autocomplete> */}
 
-          <button onClick={getRacks}>Get Racks</button>
+          {/* <button onClick={getRacks}>Get Racks</button> */}
 
           <GoogleMap
             mapContainerStyle={{ height: '80vh', width: '100%' }}
             center={position}
             zoom={zoom}
           >
-            {racks.map((rack) => (
+            {racks && racks.map((rack) => (
               <Marker
                 key={rack.id}
                 position={{
