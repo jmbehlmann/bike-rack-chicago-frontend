@@ -6,8 +6,8 @@ export function Content() {
   return (
     <main>
       <h3>Bike Rack Chicago</h3>
-      <MapIndex/>
-      {/* <MapReact/> */}
+      {/* <MapIndex/> */}
+      <MapReact/>
       {/* <RacksIndex/> */}
     </main>
   )

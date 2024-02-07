@@ -1,32 +1,95 @@
-import GoogleMapReact  from "google-map-react";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
 
-const Marker = ({ text }) => <div>{text}</div>;
+
+
+
 
 
 export function MapReact() {
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-  // Define the location on the map
-  const defaultCenter = {
-    lat: 41.8781, // default latitude
-    lng: -87.6298, // default longitude
+  const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
+  const [zoom, setZoom] = useState(12);
+  const [racks, setRacks] = useState([]);
+  const [selectedRack, setSelectedRack] = useState(null);
+  const [searchLocation, setSearchLocation] = useState('');
+
+  const getRacks = async () => {
+    console.log('getRacks');
+    try {
+      const response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+      console.log(response.data);
+      setRacks(response.data);
+    } catch (error) {
+      console.error('Error fetching racks:', error);
+    }
   };
 
-  const defaultZoom = 12; // Set the default zoom level
+  const handleMarkerClick = (rack) => {
+    setSelectedRack(rack);
+  };
+
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  });
+
+  useEffect(() => {
+    // Update position whenever racks change
+    if (racks.length > 0) {
+      const firstRack = racks[0];
+      setPosition({
+        lat: parseFloat(firstRack.latitude),
+        lng: parseFloat(firstRack.longitude),
+      });
+      setZoom(16.5)
+    }
+  }, [racks]);
+
 
   return (
-    <div style={{ height: "400px", width: "100%" }}>
-      <h2>MapReact</h2>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: apiKey }}
-        defaultCenter={defaultCenter}
-        defaultZoom={defaultZoom}
-      >
-      <Marker
-        lat={41.8781}
-        lng={-87.6298}
-        text="My Marker"
-      />
-      </GoogleMapReact>
+    <div>
+      <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p>
+
+      <button onClick={getRacks}>Get Racks</button>
+
+      {isLoaded && (
+        <GoogleMap
+          mapContainerStyle={{ height: '80vh', width: '100%' }}
+          center={position}
+          zoom={zoom}
+        >
+          {racks.map((rack) => (
+            <Marker
+              key={rack.id}
+              position={{
+                lat: parseFloat(rack.latitude),
+                lng: parseFloat(rack.longitude),
+              }}
+              onClick={() => handleMarkerClick(rack)}
+            />
+          ))}
+          {selectedRack && (
+            <InfoWindow
+              position={{
+                lat: parseFloat(selectedRack.latitude),
+                lng: parseFloat(selectedRack.longitude),
+              }}
+              onCloseClick={() => setSelectedRack(null)}
+            >
+              <div>
+                <h3>{selectedRack.name}</h3>
+                <p>{selectedRack.description}</p>
+                <p># racks: {selectedRack.quantity}</p>
+                <p>
+                  coordinates: {selectedRack.latitude}, {selectedRack.longitude}
+                </p>
+              </div>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+      )}
     </div>
   );
 }

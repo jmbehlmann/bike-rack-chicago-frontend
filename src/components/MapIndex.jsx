@@ -1,12 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
 import {
   APIProvider,
   Map,
   AdvancedMarker,
   Pin,
-  InfoWindow
+  InfoWindow,
+  useAutocomplete
 } from "@vis.gl/react-google-maps";
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+
 
 export  function MapIndex() {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
@@ -14,12 +17,14 @@ export  function MapIndex() {
   const [racks, setRacks] = useState([]);
   const [selectedRack, setSelectedRack] = useState(null);
   const [searchLocation, setSearchLocation] = useState("");
+  const [value, setValue] = useState(null);
 
+  console.log(searchLocation)
 
   const getRacks = async () => {
     console.log("getRacks");
     try {
-      const response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+      const response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation.label}`);
       console.log(response.data);
       setRacks(response.data);
     } catch (error) {
@@ -39,20 +44,40 @@ export  function MapIndex() {
         lat: parseFloat(firstRack.latitude),
         lng: parseFloat(firstRack.longitude),
       });
-      setZoom(17)
+      setZoom(16.5)
     }
   }, [racks]);
+
+  useEffect(() => {
+    if (GooglePlacesAutocomplete) {
+      APIProvider
+    }
+  })
 
 
   return (
     <div>
-      <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p>
+      <GooglePlacesAutocomplete
+        apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+        selectProps={{
+          searchLocation,
+          onChange: setSearchLocation,
+        }}
+      />
+      {/* <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p> */}
 
       <button onClick={getRacks}>Get Racks</button>
 
-      <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+      <APIProvider
+        apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+        libraries={["places"]}
+        >
         <div style={{ height: "80vh", width: "100%" }}>
-          <Map zoom={zoom} center={position} mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}>
+          <Map
+            zoom={zoom}
+            center={position}
+            mapId={import.meta.env.VITE_GOOGLE_MAPS_MAP_ID}
+            >
             {racks.map((rack) => (
               <div key={rack.id}>
                 <AdvancedMarker
