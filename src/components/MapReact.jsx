@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
+import { GoogleMap, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
 
 
 
 
 
 
-export function MapReact() {
+export function MapReact({isMapLoaded}) {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [zoom, setZoom] = useState(12);
   const [racks, setRacks] = useState([]);
   const [selectedRack, setSelectedRack] = useState(null);
   const [searchLocation, setSearchLocation] = useState('');
+  const libraries = ['places'];
 
   const getRacks = async () => {
     console.log('getRacks');
@@ -29,11 +30,6 @@ export function MapReact() {
     setSelectedRack(rack);
   };
 
-
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-  });
 
   useEffect(() => {
     // Update position whenever racks change
@@ -54,7 +50,7 @@ export function MapReact() {
 
       <button onClick={getRacks}>Get Racks</button>
 
-      {isLoaded && (
+      {isMapLoaded && (
         <GoogleMap
           mapContainerStyle={{ height: '80vh', width: '100%' }}
           center={position}
