@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useEffect } from 'react'
 
 export function RacksFetch({ searchLocation, onRacksFetch }) {
   const getRacks = async () => {
@@ -12,6 +13,20 @@ export function RacksFetch({ searchLocation, onRacksFetch }) {
       console.error("Error fetching racks:", error);
     }
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        getRacks();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [searchLocation, getRacks, onRacksFetch]);
 
   return (
     <div>
