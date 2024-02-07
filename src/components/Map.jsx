@@ -3,25 +3,25 @@ import { useState, useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow, Autocomplete } from '@react-google-maps/api';
 
 
-export function MapReact({isMapLoaded}) {
+export function Map({isLoaded, searchLocation}) {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [zoom, setZoom] = useState(12);
   const [racks, setRacks] = useState([]);
   const [selectedRack, setSelectedRack] = useState(null);
-  const [searchLocation, setSearchLocation] = useState('');
-  const [autocomplete, setAutocomplete] = useState(null);
+  // const [searchLocation, setSearchLocation] = useState('');
+  // const [autocomplete, setAutocomplete] = useState(null);
 
 
-  const onLoad = (auto) => {
-    setAutocomplete(auto);
-  };
+  // const onLoad = (auto) => {
+  //   setAutocomplete(auto);
+  // };
 
-  const onPlaceChanged = () => {
-    if (autocomplete) {
-      const place = autocomplete.getPlace();
-      setSearchLocation(place.formatted_address || place.name);
-    }
-  };
+  // const onPlaceChanged = () => {
+  //   if (autocomplete) {
+  //     const place = autocomplete.getPlace();
+  //     setSearchLocation(place.formatted_address || place.name);
+  //   }
+  // };
 
 
   const getRacks = async () => {
@@ -58,16 +58,16 @@ export function MapReact({isMapLoaded}) {
       {/* <p>Enter an Address: <input type="text" value={searchLocation} onChange={(event) => setSearchLocation(event.target.value) }/></p> */}
 
 
-      {isMapLoaded && (
+      {isLoaded && (
         <div>
-          <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-            <input
+          {/* <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+            <input className='search-box'
               type="text"
               placeholder="Enter a location"
               value={searchLocation}
               onChange={(e) => setSearchLocation(e.target.value)}
             />
-          </Autocomplete>
+          </Autocomplete> */}
 
           <button onClick={getRacks}>Get Racks</button>
 

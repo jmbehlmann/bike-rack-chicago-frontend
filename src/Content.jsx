@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { RacksIndex } from "./components/RacksIndex.jsx"
-import { MapIndex } from "./components/MapIndex.jsx"
-import { MapReact } from "./components/MapReact.jsx"
+import { SearchBox } from "./components/SearchBox.jsx"
+import { Map } from "./components/Map.jsx"
 import { useJsApiLoader } from "@react-google-maps/api";
 
 export function Content() {
   const [libraries] = useState(['places'])
+  const [searchLocation, setSearchLocation] = useState(['places'])
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -13,11 +14,15 @@ export function Content() {
     libraries: libraries,
   });
 
+  const handleSearchLocationChange = (newLocation) => {
+    setSearchLocation(newLocation);
+  };
+
   return (
     <main>
       <h3>Bike Rack Chicago</h3>
-      {/* <MapIndex/> */}
-      <MapReact isMapLoaded={isLoaded}/>
+      <SearchBox isLoaded={isLoaded} onSearchLocationChange={handleSearchLocationChange}/>
+      <Map isLoaded={isLoaded} searchLocation={searchLocation}/>
       {/* <RacksIndex/> */}
     </main>
   )
