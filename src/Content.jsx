@@ -53,7 +53,7 @@ export function Content() {
             </div>
 
             <div className="col-lg-4 order-lg-1 ">
-              <div className="racks-index-container" style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc"  }}>
+              <div className="racks-index-container" style={{ height: "75vh", overflowY: "auto", border: "1px solid #ccc"  }}>
                 <RacksIndex racks={racks}/>
               </div>
             </div>

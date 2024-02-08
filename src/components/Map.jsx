@@ -34,7 +34,7 @@ export function Map({isLoaded, racks}) {
       {isLoaded && (
         <div>
           <GoogleMap
-            mapContainerStyle={{ height: '80vh', width: '100%' }}
+            mapContainerStyle={{ height: '75vh', width: '100%' }}
             center={position}
             zoom={12}
             onLoad={onLoad}

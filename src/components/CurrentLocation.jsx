@@ -25,16 +25,14 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
 
 
   return (
-    <div>
-      <h2>My Current Location</h2>
-      <button onClick={getCurrentLocation}>Near You</button>
-      {/* {currentLocation.latitude && currentLocation.longitude ? (
-        <p>
-          Latitude: {currentLocation.latitude}, Longitude: {currentLocation.longitude}
-        </p>
-      ) : (
-        <p>Loading...</p>
-      )} */}
+    <div className='row p-2 mt-2'>
+      <div className='col-lg-8'>
+        <h4>... or find racks near your current location</h4>
+      </div>
+      <div className='col-lg-4'>
+        <button type="button" className="btn btn-primary w-100" onClick={getCurrentLocation}>Near You</button>
+      </div>
+
     </div>
   )
 }

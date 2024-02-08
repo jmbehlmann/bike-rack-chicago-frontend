@@ -29,7 +29,6 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
 
 
   useEffect(() => {
-    let stopGetRacks = false;
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
         getRacks();
@@ -40,6 +39,13 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
       getRacks();
       stopGetRacksRef.current = true
     }
+
+    // // uncomment to run getRacks on selecting an autocomplete suggestion
+
+    // if (searchLocation && !stopGetRacksRef.current) {
+    //   getRacks();
+    //   stopGetRacksRef.current = true
+    // }
 
     window.addEventListener("keydown", handleKeyPress);
 
