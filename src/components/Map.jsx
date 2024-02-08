@@ -1,26 +1,33 @@
 import { useState, useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
-export function Map({isLoaded, searchLocation, racks}) {
-  const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
+export function Map({isLoaded, racks}) {
+  // const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [zoom, setZoom] = useState(12);
+  const [map, setMap] = useState(null);
+
   const [selectedRack, setSelectedRack] = useState(null);
 
   const handleMarkerClick = (rack) => {
     setSelectedRack(rack);
   };
 
+  const onLoad = (map) => {
+    setMap(map);
+  };
+
   useEffect(() => {
-    // Update position whenever racks change
-    if (racks.length > 0) {
-      const firstRack = racks[0];
-      setPosition({
-        lat: parseFloat(firstRack.latitude),
-        lng: parseFloat(firstRack.longitude),
+    if (map && racks.length > 0) {
+      const bounds = new window.google.maps.LatLngBounds();
+      racks.forEach((rack) => {
+        bounds.extend({
+          lat: parseFloat(rack.latitude),
+          lng: parseFloat(rack.longitude),
+        });
       });
-      setZoom(16.5)
+      map.fitBounds(bounds);
     }
-  }, [racks]);
+  }, [map, racks]);
 
   return (
     <div>
@@ -28,8 +35,9 @@ export function Map({isLoaded, searchLocation, racks}) {
         <div>
           <GoogleMap
             mapContainerStyle={{ height: '80vh', width: '100%' }}
-            center={position}
-            zoom={zoom}
+            center={{ lat: 41.8781, lng: -87.6298 }}
+            zoom={12}
+            onLoad={onLoad}
           >
             {racks && racks.map((rack) => (
               <Marker

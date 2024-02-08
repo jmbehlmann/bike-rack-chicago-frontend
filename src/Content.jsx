@@ -30,12 +30,12 @@ export function Content() {
       <div className="container-xxl">
         <h3>Bike Rack Chicago</h3>
           <div className="row p-2" >
-            <div className="col-sm-9">
+            <div className="col-sm-8">
 
               <SearchBox isLoaded={isLoaded} onSearchLocationChange={handleSearchLocationChange}/>
             </div>
 
-            <div className="col-sm-3">
+            <div className="col-sm-4">
               <RacksFetch searchLocation={searchLocation} onRacksFetch={handleRacksIndex}/>
             </div>
           </div>
@@ -44,11 +44,14 @@ export function Content() {
           <div className="col-lg-8 order-lg-2">
             <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
           </div>
-          <div className="col-lg-4 order-lg-1 ">
-            <div className="racks-index-container" style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc"  }}>
-              <RacksIndex racks={racks}/>
+
+          {racks &&
+            <div className="col-lg-4 order-lg-1 ">
+              <div className="racks-index-container" style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc"  }}>
+                <RacksIndex racks={racks}/>
+              </div>
             </div>
-          </div>
+          }
 
         </div>
       </div>
