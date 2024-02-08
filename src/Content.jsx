@@ -42,7 +42,7 @@ export function Content() {
             </div>
 
             <div className="col-sm-4">
-              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex}/>
+              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex} />
             </div>
           </div>
 

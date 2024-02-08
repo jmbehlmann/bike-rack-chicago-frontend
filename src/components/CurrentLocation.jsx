@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 
 export function CurrentLocation({ onSearchCoordinatesChange }) {
-  const [currentLocation, setCurrentLocation] = useState({ latitude: null, longitude: null });
 
 
-  const getCurrentLocation = () => {
+  const getCurrentLocation = async () => {
     console.log("getCurrentLocation")
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -14,7 +13,7 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
         };
         onSearchCoordinatesChange(currentLocation)
         console.log(currentLocation)
-      });
+      })
     } else {
       console.log("Geolocation is not available in your browser.");
     }
