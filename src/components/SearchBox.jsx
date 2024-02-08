@@ -29,7 +29,6 @@ const options = {
 
   return (
     <div>
-      {/* <p>Searchbox</p> */}
       {isLoaded && (
 
         <Autocomplete

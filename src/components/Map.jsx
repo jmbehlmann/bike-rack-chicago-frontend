@@ -34,7 +34,7 @@ export function Map({isLoaded, racks}) {
       {isLoaded && (
         <div>
           <GoogleMap
-            mapContainerStyle={{ height: '75vh', width: '100%' }}
+            mapContainerStyle={{ height: '80vh', width: '100%' }}
             center={position}
             zoom={12}
             onLoad={onLoad}
@@ -58,7 +58,7 @@ export function Map({isLoaded, racks}) {
                 onCloseClick={() => setSelectedRack(null)}
               >
                 <div>
-                  <h3>{selectedRack.name}</h3>
+                  <h5>{selectedRack.name}</h5>
                   <p>{selectedRack.description}</p>
                   <p># racks: {selectedRack.quantity}</p>
                   <p>

@@ -25,9 +25,9 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
 
 
   return (
-    <div className='row p-2 mt-2'>
+    <div className='row p-2'>
       <div className='col-lg-8'>
-        <h4>... or find racks near your current location</h4>
+        <h5>... or find racks near your current location</h5>
       </div>
       <div className='col-lg-4'>
         <button type="button" className="btn btn-primary w-100" onClick={getCurrentLocation}>Near You</button>
