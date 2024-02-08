@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
 export function CurrentLocation({ onSearchCoordinatesChange }) {
-
+  const [isLoading, setIsLoading] = useState(false)
 
   const getCurrentLocation = async () => {
+    setIsLoading(true)
     console.log("getCurrentLocation")
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -30,7 +31,7 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
         <h5>... or find racks near your current location</h5>
       </div>
       <div className='col-lg-4'>
-        <button type="button" className="btn btn-primary w-100" onClick={getCurrentLocation}>Near You</button>
+        <button type="button" className="btn btn-primary w-100" onClick={getCurrentLocation}>{isLoading ? 'Getting Your Location...' : "Near You"} </button>
       </div>
 
     </div>
