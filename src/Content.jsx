@@ -2,12 +2,14 @@ import { useState } from "react"
 import { RacksFetch } from "./components/RacksFetch.jsx"
 import { RacksIndex } from "./components/RacksIndex.jsx"
 import { SearchBox } from "./components/SearchBox.jsx"
+import { CurrentLocation } from "./components/CurrentLocation.jsx"
 import { Map } from "./components/Map.jsx"
 import { useJsApiLoader } from "@react-google-maps/api";
 
 export function Content() {
   const [libraries] = useState(['places'])
   const [searchLocation, setSearchLocation] = useState("")
+  const [searchCoordinates, setSearchCoodinates] = useState("")
   const [racks, setRacks] = useState("")
 
   const { isLoaded } = useJsApiLoader({
@@ -24,6 +26,11 @@ export function Content() {
     setRacks(returnedRacks)
   }
 
+  const handleSearchCoordinatesChange = (currentLocation) => {
+    setSearchCoodinates(currentLocation)
+  }
+
+
 
   return (
     <main>
@@ -31,12 +38,11 @@ export function Content() {
         <h3>Bike Rack Chicago</h3>
           <div className="row p-2" >
             <div className="col-sm-8">
-
               <SearchBox isLoaded={isLoaded} onSearchLocationChange={handleSearchLocationChange}/>
             </div>
 
             <div className="col-sm-4">
-              <RacksFetch searchLocation={searchLocation} onRacksFetch={handleRacksIndex}/>
+              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex}/>
             </div>
           </div>
 
@@ -59,8 +65,10 @@ export function Content() {
               <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
             </div>
           </div>
-          )
-          }
+          )}
+        <div>
+          <CurrentLocation onSearchCoordinatesChange={handleSearchCoordinatesChange}/>
+        </div>
       </div>
     </main>
   )
