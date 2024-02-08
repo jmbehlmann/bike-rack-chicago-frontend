@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
 export function Map({isLoaded, racks}) {
-  // const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
-  const [zoom, setZoom] = useState(12);
+  const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [map, setMap] = useState(null);
-
   const [selectedRack, setSelectedRack] = useState(null);
+  // const [zoom, setZoom] = useState(12);
+
 
   const handleMarkerClick = (rack) => {
     setSelectedRack(rack);
@@ -35,7 +35,7 @@ export function Map({isLoaded, racks}) {
         <div>
           <GoogleMap
             mapContainerStyle={{ height: '80vh', width: '100%' }}
-            center={{ lat: 41.8781, lng: -87.6298 }}
+            center={position}
             zoom={12}
             onLoad={onLoad}
           >

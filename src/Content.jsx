@@ -40,20 +40,27 @@ export function Content() {
             </div>
           </div>
 
-        <div className="row">
-          <div className="col-lg-8 order-lg-2">
-            <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
-          </div>
+          {racks ? (
+          <div className="row">
+            <div className="col-lg-8 order-lg-2">
+              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
+            </div>
 
-          {racks &&
             <div className="col-lg-4 order-lg-1 ">
               <div className="racks-index-container" style={{ height: "80vh", overflowY: "auto", border: "1px solid #ccc"  }}>
                 <RacksIndex racks={racks}/>
               </div>
             </div>
-          }
 
-        </div>
+          </div>
+          ) : (
+          <div>
+            <div className="col-lg-12 order-lg-2">
+              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
+            </div>
+          </div>
+          )
+          }
       </div>
     </main>
   )
