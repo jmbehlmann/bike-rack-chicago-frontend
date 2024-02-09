@@ -6,5 +6,6 @@ export default defineConfig({
   build: {
     outDir: 'build', // Specify the output directory
   },
+  base: '/bike-rack-chicago-frontend',
   plugins: [react()],
 });

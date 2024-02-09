@@ -4,9 +4,9 @@ export function Header() {
     <div className="container-xxl">
       <div className="row px-2 mt-2">
         <div className="col-sm-1">
-          <img src="/star-text.png" className="d-block" style={{ height: "2.25rem", objectFit: "contain" }}/>
+          <img src="/bike-rack-chicago-frontend/public/star-text.PNG" className="d-block" style={{ height: "2.25rem", objectFit: "contain" }}/>
         </div>
-        <div className="col sm-11 allign-left">
+        <div className="col sm-11 align-left">
           {/* <h3>Bike Rack Chicago</h3> */}
         </div>
       </div>
