@@ -20,11 +20,6 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
     }
   }
 
-
-
-
-
-
   return (
     <div className='row py-2'>
       <div className='col-sm-8 d-flex align-items-center'>

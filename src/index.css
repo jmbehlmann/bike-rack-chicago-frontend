@@ -1,6 +1,6 @@
 .btn.btn-primary {
   background-color: #0075BB;
-  border-color: #005B99;
+  border-color: #005f96;
   color: white;
 }
 
@@ -9,4 +9,8 @@
   /* Adjust the color as needed */
   filter: brightness(95%);
   /* Adjust the percentage as needed */
+}
+
+.font-link {
+  font-family: 'Big Shoulders';
 }
