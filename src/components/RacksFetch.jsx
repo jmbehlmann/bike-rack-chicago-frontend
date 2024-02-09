@@ -70,10 +70,3 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
   )
 }
 
-// different blues
-
-// #005B99
-// #0075BB
-// #41B6E6
-// #0092D1
-// #2C5491

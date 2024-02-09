@@ -1,7 +1,9 @@
 export function Footer() {
   return (
-    <footer>
-      <p>Copyright 2024</p>
-    </footer>
+    <div className="container-xxl">
+      <footer>
+        <p className="text-center" style={{ fontSize: '0.5rem' }}>&copy; 2024 James Behlmann. All rights reserved.</p>
+      </footer>
+    </div>
   )
 }

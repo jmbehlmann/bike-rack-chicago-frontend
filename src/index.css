@@ -1,11 +1,11 @@
 .btn.btn-primary {
-  background-color: #0075BB;
+  background-color: #005B99;
   border-color: #005f96;
   color: white;
 }
 
 .btn.btn-primary:hover {
-  background-color: #0075BB;
+  background-color: #005B99;
   /* Adjust the color as needed */
   filter: brightness(95%);
   /* Adjust the percentage as needed */
@@ -14,3 +14,11 @@
 .font-link {
   font-family: 'Big Shoulders';
 }
+
+/* different blues
+
+#005B99
+#0075BB
+#41B6E6
+#0092D1
+#2C5491 */
