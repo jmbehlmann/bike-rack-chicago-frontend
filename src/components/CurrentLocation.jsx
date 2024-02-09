@@ -26,12 +26,19 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
 
 
   return (
-    <div className='row p-2'>
-      <div className='col-lg-8'>
+    <div className='row py-2'>
+      <div className='col-sm-8 d-flex align-items-center'>
         <h5>... or find racks near your current location</h5>
       </div>
-      <div className='col-lg-4'>
-        <button type="button" className="btn btn-primary w-100" onClick={getCurrentLocation}>{isLoading ? 'Getting Your Location...' : "Near You"} </button>
+      <div className='col-sm-4'>
+        <button
+          type="button"
+          className="btn btn-primary w-100"
+          // style={{
+          //   backgroundColor: "#0075BB",
+          //   borderColor: "#005B99",
+          //   color: "white"}}
+          onClick={getCurrentLocation}>{isLoading ? 'Getting Your Location...' : "Near You"} </button>
       </div>
 
     </div>

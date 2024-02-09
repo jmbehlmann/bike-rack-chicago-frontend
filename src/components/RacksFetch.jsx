@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useRef } from 'react'
+import '../index.css'
 
 export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) {
 
@@ -60,7 +61,19 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
   return (
     <div>
       {/* <h2>Racks Fetch</h2> */}
-      <button type="button" className="btn btn-primary w-100"  onClick={getRacks}>Get Racks</button>
+      <button
+        type="button"
+        className="btn btn-primary w-100"
+        onClick={getRacks}
+      >Get Racks</button>
     </div>
   )
 }
+
+// different blues
+
+// #005B99
+// #0075BB
+// #41B6E6
+// #0092D1
+// #2C5491

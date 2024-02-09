@@ -1,9 +1,12 @@
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
+.btn.btn-primary {
+  background-color: #0075BB;
+  border-color: #005B99;
+  color: white;
+}
 
-  100% {
-    transform: rotate(360deg);
-  }
+.btn.btn-primary:hover {
+  background-color: #0075BB;
+  /* Adjust the color as needed */
+  filter: brightness(95%);
+  /* Adjust the percentage as needed */
 }

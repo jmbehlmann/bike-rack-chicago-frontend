@@ -36,7 +36,7 @@ export function Content() {
     <main>
       <div className="container-xxl">
           <div className="row p-2" >
-            <h3>Bike Rack Chicago</h3>
+            {/* <h3>Bike Rack Chicago</h3> */}
             <div className="col-sm-8">
               <SearchBox isLoaded={isLoaded} onSearchLocationChange={handleSearchLocationChange}/>
             </div>
@@ -47,7 +47,7 @@ export function Content() {
           </div>
 
           {racks ? (
-          <div className="row p-2">
+          <div className="row px-2">
             <div className="col-lg-8 order-lg-2">
               <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
             </div>
@@ -60,8 +60,8 @@ export function Content() {
 
           </div>
           ) : (
-          <div>
-            <div className="col-lg-12 order-lg-2 p-2">
+          <div className="row px-2">
+            <div className="col-lg-12  p-2">
               <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
             </div>
             <div>
