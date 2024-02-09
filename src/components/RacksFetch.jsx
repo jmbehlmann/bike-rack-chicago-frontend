@@ -6,14 +6,35 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
 
   const stopGetRacksRef = useRef(false);
 
+  // const getRacks = async () => {
+  //   try {
+  //     let response;
+
+  //     if (searchLocation) {
+  //       response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+  //     } else if (searchCoordinates) {
+  //       response = await axios.get(`http://localhost:3000/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
+  //     } else {
+  //       console.error("Either searchLocation or searchCoordinates should be provided.");
+  //       return;
+  //     }
+
+  //     console.log(response.data);
+  //     const racks = response.data;
+  //     onRacksFetch(racks);
+  //   } catch (error) {
+  //     console.error("Error fetching racks:", error);
+  //   }
+  // };
+
   const getRacks = async () => {
     try {
       let response;
 
       if (searchLocation) {
-        response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+        response = await axios.get(`https://shielded-sea-28254-f47942d33ba0.herokuapp.com/bike_racks.json?location=${searchLocation}`);
       } else if (searchCoordinates) {
-        response = await axios.get(`http://localhost:3000/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
+        response = await axios.get(`https://shielded-sea-28254-f47942d33ba0.herokuapp.com/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
       } else {
         console.error("Either searchLocation or searchCoordinates should be provided.");
         return;
