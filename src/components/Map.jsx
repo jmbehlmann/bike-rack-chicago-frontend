@@ -64,6 +64,7 @@ export function Map({isLoaded, racks}) {
                   <p>
                     coordinates: {selectedRack.latitude}, {selectedRack.longitude}
                   </p>
+                  <a href={`https://www.google.com/maps/dir/?api=1&destination=${selectedRack.latitude},${selectedRack.longitude}&travelmode=bicycling`}>directions</a>
                 </div>
               </InfoWindow>
             )}
