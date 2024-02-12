@@ -1,5 +1,13 @@
+import { useState } from 'react';
 
 export function RacksIndex({ racks }) {
+  const [alertShown, setAlertShown] = useState(false);
+
+  if (racks.length === 0 && !alertShown) {
+    alert("Please try a different location.");
+    setAlertShown(true); // Set the state to indicate that the alert has been shown
+  }
+
   return (
     <div>
       {racks && racks.map((rack) => (
