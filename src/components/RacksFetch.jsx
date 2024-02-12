@@ -1,9 +1,9 @@
 import axios from "axios"
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../index.css'
 
 export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) {
-
+  const [isLoading, setIsLoading] = useState(false)
   const stopGetRacksRef = useRef(false);
 
   // const getRacks = async () => {
@@ -30,7 +30,7 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
   const getRacks = async () => {
     try {
       let response;
-
+      setIsLoading(true);
       if (searchLocation) {
         response = await axios.get(`https://shielded-sea-28254-f47942d33ba0.herokuapp.com/bike_racks.json?location=${searchLocation}`);
       } else if (searchCoordinates) {
@@ -40,9 +40,10 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
         return;
       }
 
-      console.log(response.data);
+      // console.log(response.data);
       const racks = response.data;
       onRacksFetch(racks);
+      setIsLoading(false)
     } catch (error) {
       console.error("Error fetching racks:", error);
     }
@@ -86,7 +87,7 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
         type="button"
         className="btn btn-primary w-100"
         onClick={getRacks}
-      >Get Racks</button>
+      >{isLoading ? 'Getting Racks...' : "GetRacks"}</button>
     </div>
   )
 }

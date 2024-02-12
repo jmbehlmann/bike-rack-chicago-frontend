@@ -5,7 +5,6 @@ export function Map({isLoaded, racks}) {
   const [position, setPosition] = useState({ lat: 41.8781, lng: -87.6298 });
   const [map, setMap] = useState(null);
   const [selectedRack, setSelectedRack] = useState(null);
-  // const [zoom, setZoom] = useState(12);
 
 
   const handleMarkerClick = (rack) => {
