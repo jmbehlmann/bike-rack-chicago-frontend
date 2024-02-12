@@ -11,6 +11,8 @@ export function Content() {
   const [searchLocation, setSearchLocation] = useState("")
   const [searchCoordinates, setSearchCoodinates] = useState("")
   const [racks, setRacks] = useState("")
+  const [shouldGetRacks, setShouldGetRacks] = useState(false)
+
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -20,14 +22,16 @@ export function Content() {
 
   const handleSearchLocationChange = (newLocation) => {
     setSearchLocation(newLocation);
+    setShouldGetRacks(true);
   };
 
   const handleRacksIndex = (returnedRacks) => {
-    setRacks(returnedRacks)
+    setRacks(returnedRacks);
   }
 
   const handleSearchCoordinatesChange = (currentLocation) => {
-    setSearchCoodinates(currentLocation)
+    setSearchCoodinates(currentLocation);
+    setShouldGetRacks(true);
   }
 
 
@@ -42,7 +46,7 @@ export function Content() {
             </div>
 
             <div className="col-sm-4">
-              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex} />
+              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex} shouldGetRacks={shouldGetRacks}/>
             </div>
           </div>
 

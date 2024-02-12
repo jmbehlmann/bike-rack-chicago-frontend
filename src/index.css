@@ -11,6 +11,10 @@
   /* Adjust the percentage as needed */
 }
 
+.btn.btn-primary:active {
+  background-color: #004776 !important;
+}
+
 .font-link {
   font-family: 'Big Shoulders';
 }

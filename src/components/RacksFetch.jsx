@@ -4,7 +4,38 @@ import '../index.css'
 
 export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) {
   const [isLoading, setIsLoading] = useState(false)
+  const [buttonText, setButtonText] = useState("Get Racks")
   const stopGetRacksRef = useRef(false);
+
+  useEffect(() => {
+    let interval;
+
+    if (searchLocation && isLoading) {
+      // Start the loading ellipsis animation
+      interval = setInterval(() => {
+        setButtonText((prevText) => {
+          switch (prevText) {
+            case 'Getting Racks':
+              return 'Getting Racks.';
+            case 'Getting Racks.':
+              return 'Getting Racks..';
+            case 'Getting Racks..':
+              return 'Getting Racks...';
+            default:
+              return 'Getting Racks';
+          }
+        });
+      }, 500); // Adjust the interval duration as needed
+    } else {
+      // Clear the interval when loading is complete or an error occurs
+      clearInterval(interval);
+      setButtonText('Get Racks')
+    }
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(interval);
+  }, [isLoading]);
+  // axios request for rails server
 
   // const getRacks = async () => {
   //   try {
@@ -27,10 +58,12 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
   //   }
   // };
 
+  // axios request for heroku server
+
   const getRacks = async () => {
     try {
-      let response;
       setIsLoading(true);
+      let response;
       if (searchLocation) {
         response = await axios.get(`https://shielded-sea-28254-f47942d33ba0.herokuapp.com/bike_racks.json?location=${searchLocation}`);
       } else if (searchCoordinates) {
@@ -58,12 +91,14 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
       }
     };
 
+
+    // // uncomment to run getRacks on selecting an autocomplete suggestion
+
     if (searchCoordinates && !stopGetRacksRef.current) {
       getRacks();
       stopGetRacksRef.current = true
     }
 
-    // // uncomment to run getRacks on selecting an autocomplete suggestion
 
     // if (searchLocation && !stopGetRacksRef.current) {
     //   getRacks();
@@ -87,7 +122,7 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
         type="button"
         className="btn btn-primary w-100"
         onClick={getRacks}
-      >{isLoading ? 'Getting Racks...' : "GetRacks"}</button>
+      >{buttonText}</button>
     </div>
   )
 }
