@@ -12,6 +12,8 @@ export function Content() {
   const [searchCoordinates, setSearchCoodinates] = useState("")
   const [racks, setRacks] = useState("")
   const [shouldGetRacks, setShouldGetRacks] = useState(false)
+  const [mapSize, setMapSize] = useState({ height: '76vh', width: '100%' })
+
 
 
   const { isLoaded } = useJsApiLoader({
@@ -22,19 +24,16 @@ export function Content() {
 
   const handleSearchLocationChange = (newLocation) => {
     setSearchLocation(newLocation);
-    setShouldGetRacks(true);
   };
-
-  const handleRacksIndex = (returnedRacks) => {
-    setRacks(returnedRacks);
-  }
 
   const handleSearchCoordinatesChange = (currentLocation) => {
     setSearchCoodinates(currentLocation);
-    setShouldGetRacks(true);
   }
 
-
+  const handleRacksIndex = (returnedRacks) => {
+    setRacks(returnedRacks);
+    setMapSize({ height: '84vh', width: '100%' })
+  }
 
   return (
     <main>
@@ -53,11 +52,11 @@ export function Content() {
           {racks ? (
           <div className="row px-2">
             <div className="col-lg-8 order-lg-2">
-              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
+              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks} mapSize={mapSize}/>
             </div>
 
             <div className="col-lg-4 order-lg-1">
-              <div className="racks-index-container" style={{ height: "80vh", overflowY: "auto"}}>
+              <div className="racks-index-container" style={{ height: "84vh", overflowY: "auto"}}>
                 <RacksIndex racks={racks}/>
               </div>
             </div>
@@ -66,7 +65,7 @@ export function Content() {
           ) : (
           <div className="row px-2">
             <div className="col-lg-12  p-2">
-              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks}/>
+              <Map isLoaded={isLoaded} searchLocation={searchLocation} racks={racks} mapSize={mapSize}/>
             </div>
             <div>
               <CurrentLocation onSearchCoordinatesChange={handleSearchCoordinatesChange}/>
