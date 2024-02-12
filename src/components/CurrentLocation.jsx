@@ -8,7 +8,6 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
     let interval;
 
     if (isLoading) {
-      // Start the loading ellipsis animation
       interval = setInterval(() => {
         setButtonText((prevText) => {
           switch (prevText) {
@@ -22,13 +21,11 @@ export function CurrentLocation({ onSearchCoordinatesChange }) {
               return 'Getting Your Location';
           }
         });
-      }, 500); // Adjust the interval duration as needed
+      }, 333);
     } else {
-      // Clear the interval when loading is complete or an error occurs
       clearInterval(interval);
     }
 
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, [isLoading]);
 

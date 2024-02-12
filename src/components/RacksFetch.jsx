@@ -11,7 +11,6 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
     let interval;
 
     if (searchLocation && isLoading) {
-      // Start the loading ellipsis animation
       interval = setInterval(() => {
         setButtonText((prevText) => {
           switch (prevText) {
@@ -25,16 +24,15 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
               return 'Getting Racks';
           }
         });
-      }, 500); // Adjust the interval duration as needed
+      },333);
     } else {
-      // Clear the interval when loading is complete or an error occurs
       clearInterval(interval);
       setButtonText('Get Racks')
     }
-
-    // Cleanup the interval on component unmount
     return () => clearInterval(interval);
   }, [isLoading]);
+
+
   // axios request for rails server
 
   // const getRacks = async () => {
@@ -69,16 +67,17 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
       } else if (searchCoordinates) {
         response = await axios.get(`https://shielded-sea-28254-f47942d33ba0.herokuapp.com/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
       } else {
-        console.error("Either searchLocation or searchCoordinates should be provided.");
-        return;
+      throw new Error("Please provide a valid location to fetch bike racks. You can enter a specific location or allow access to your current location.");
       }
 
       // console.log(response.data);
       const racks = response.data;
       onRacksFetch(racks);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching racks:", error);
+      // console.error("Error fetching racks:", error);
+      alert(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -91,14 +90,12 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
       }
     };
 
-
-    // // uncomment to run getRacks on selecting an autocomplete suggestion
-
     if (searchCoordinates && !stopGetRacksRef.current) {
       getRacks();
       stopGetRacksRef.current = true
     }
 
+    // // uncomment to run getRacks on selecting an autocomplete suggestion
 
     // if (searchLocation && !stopGetRacksRef.current) {
     //   getRacks();
