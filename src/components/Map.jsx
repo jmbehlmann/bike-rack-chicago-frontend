@@ -45,6 +45,7 @@ export function Map({isLoaded, racks, mapSize}) {
                   lat: parseFloat(rack.latitude),
                   lng: parseFloat(rack.longitude),
                 }}
+                animation={2}
                 onClick={() => handleMarkerClick(rack)}
               />
             ))}

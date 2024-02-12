@@ -25,7 +25,7 @@ export function RacksIndex({ racks }) {
         ))
       ) : (
         <div className="d-flex justify-content-center align-items-center">
-          <h5>No Racks Found</h5>
+          <h5>No Racks Found :&#40;</h5>
         </div>
       )}
     </div>

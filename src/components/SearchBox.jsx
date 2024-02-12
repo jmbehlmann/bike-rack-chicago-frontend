@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 
-export function SearchBox({isLoaded, onSearchLocationChange, onRacksFetch}) {
+export function SearchBox({ isLoaded, onSearchLocationChange }) {
   const [autocomplete, setAutocomplete] = useState(null);
 
   const bounds = {
