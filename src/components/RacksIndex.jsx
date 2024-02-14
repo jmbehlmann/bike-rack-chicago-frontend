@@ -5,10 +5,8 @@ export function RacksIndex({ racks }) {
 
   if (racks.length === 0 && !alertShown) {
     alert("Please try a different location.");
-    setAlertShown(true); // Set the state to indicate that the alert has been shown
+    setAlertShown(true);
   }
-
-  console.log(racks.length)
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 
 export function Map({isLoaded, racks, mapSize}) {
@@ -28,6 +28,11 @@ export function Map({isLoaded, racks, mapSize}) {
     }
   }, [map, racks]);
 
+  // const onUnmount = useCallback(function callback(map) {
+  //   setMap(null)
+  // }, [])
+
+
   return (
     <div>
       {isLoaded && (
@@ -37,6 +42,7 @@ export function Map({isLoaded, racks, mapSize}) {
             center={position}
             zoom={12}
             onLoad={onLoad}
+            // onUnmount={onUnmount}
           >
             {racks && racks.map((rack) => (
               <Marker

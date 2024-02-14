@@ -30,22 +30,19 @@ const options = {
   return (
     <div>
       {isLoaded && (
-
         <Autocomplete
           onLoad={onLoad}
           onPlaceChanged={onPlaceChanged}
           bounds={bounds}
           options={options}
-          >
+        >
           <input
             className='form-control p-21'
             type="text"
             placeholder="Enter a location"
           />
         </Autocomplete>
-
       )}
-
     </div>
   )
 }

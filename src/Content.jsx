@@ -11,7 +11,6 @@ export function Content() {
   const [searchLocation, setSearchLocation] = useState("")
   const [searchCoordinates, setSearchCoodinates] = useState("")
   const [racks, setRacks] = useState("")
-  const [shouldGetRacks, setShouldGetRacks] = useState(false)
   const [mapSize, setMapSize] = useState({ height: '76vh', width: '100%' })
 
 
@@ -45,7 +44,7 @@ export function Content() {
             </div>
 
             <div className="col-sm-4">
-              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex} shouldGetRacks={shouldGetRacks}/>
+              <RacksFetch searchLocation={searchLocation} searchCoordinates={searchCoordinates} onRacksFetch={handleRacksIndex} />
             </div>
           </div>
 
