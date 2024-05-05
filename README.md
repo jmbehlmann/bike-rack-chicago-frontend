@@ -27,7 +27,11 @@ To get started with the frontend development environment, follow these steps:
 ```
    npm start
 ```
-5. Open your browser and navigate to http://localhost:3000 to view the application.
+5. Open your browser and navigate to http://localhost:5173/bike-rack-chicago-frontend to view the application.
+
+## View the Application
+
+You can view the live application [here](https://jmbehlmann.github.io/bike-rack-chicago-frontend/).
 
 ## Technologies Used
 
