@@ -37,24 +37,28 @@ export function RacksFetch({ searchLocation, searchCoordinates, onRacksFetch }) 
 
   // const getRacks = async () => {
   //   try {
+  //     setIsLoading(true);
   //     let response;
-
   //     if (searchLocation) {
-  //       response = await axios.get(`http://localhost:3000/bike_racks.json?location=${searchLocation}`);
+  //       response = await axios.get(`http://127.0.0.1:3000/bike_racks.json?location=${searchLocation}`);
   //     } else if (searchCoordinates) {
-  //       response = await axios.get(`http://localhost:3000/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
+  //       response = await axios.get(`http://127.0.0.1:3000/bike_racks.json?latitude=${searchCoordinates.latitude}&longitude=${searchCoordinates.longitude}`);
   //     } else {
-  //       console.error("Either searchLocation or searchCoordinates should be provided.");
-  //       return;
+  //     throw new Error("Please provide a valid location to fetch bike racks. You can enter a specific location or allow access to your current location.");
   //     }
 
   //     console.log(response.data);
   //     const racks = response.data;
   //     onRacksFetch(racks);
+  //     setIsLoading(false);
   //   } catch (error) {
   //     console.error("Error fetching racks:", error);
+  //     alert(error.message);
+  //     setIsLoading(false);
   //   }
   // };
+
+
 
   // axios request for heroku server
 
